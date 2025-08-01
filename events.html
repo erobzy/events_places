@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events - Ghana Events</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <header class="bg-green-700 text-white p-4 text-center">
+    <h1 class="text-2xl font-bold">🎟 Upcoming Events</h1>
+    <a href="archive.html" class="mt-3 inline-block bg-gray-600 px-4 py-2 rounded hover:bg-gray-700">📂 View Archived Events</a>
+  </header>
+
+  <main class="max-w-6xl mx-auto py-8 px-4">
+    <div id="eventsList" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+  </main>
+
+  <script>
+    const today = new Date().toISOString().split('T')[0];
+    const events = [
+      { title: "Afrobeat Concert", date: "2025-08-15", location: "Accra Stadium", image: "https://via.placeholder.com/400", description: "Live music and dance!" },
+      { title: "Chale Wote Festival", date: "2025-07-20", location: "James Town", image: "https://via.placeholder.com/400", description: "Street art & culture." },
+      { title: "Food Fair", date: "2025-06-10", location: "Kumasi Park", image: "https://via.placeholder.com/400", description: "Local delicacies galore!" }
+    ];
+
+    const eventsList = document.getElementById('eventsList');
+    events.forEach(event => {
+      if (event.date >= today) {
+        const card = document.createElement('div');
+        card.className = "bg-white rounded shadow hover:shadow-lg transition";
+        card.innerHTML = `
+          <img src="${event.image}" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-lg font-bold">${event.title}</h3>
+            <p class="text-sm text-gray-600">${event.date} • ${event.location}</p>
+            <p class="mt-2 text-sm">${event.description}</p>
+          </div>`;
+        eventsList.appendChild(card);
+      }
+    });
+  </script>
+</body>
+</html>
