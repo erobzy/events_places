@@ -1,73 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Events Demo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghana Events - Landing Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 font-sans">
-
-  <!-- Header -->
-  <header class="bg-green-700 text-white p-4 text-center">
-    <h1 class="text-2xl font-bold">🎟 Ghana Events - Interactive Demo</h1>
-    <p class="text-sm mt-1">Upcoming and archived events auto-filtered by date.</p>
+  <header class="bg-green-700 text-white text-center py-6">
+    <h1 class="text-3xl font-bold">🎉 Welcome to Ghana Events</h1>
+    <p class="mt-2 text-lg">Discover events & exciting places in Ghana!</p>
   </header>
 
-  <!-- Navigation Buttons -->
-  <div class="flex justify-center mt-4 space-x-4">
-    <button id="upcomingBtn" class="bg-green-600 px-4 py-2 text-white rounded hover:bg-green-700">Upcoming Events</button>
-    <button id="archiveBtn" class="bg-gray-600 px-4 py-2 text-white rounded hover:bg-gray-700">Archived Events</button>
-  </div>
-
-  <!-- Events Container -->
-  <main class="max-w-6xl mx-auto py-8 px-4">
-    <div id="eventsList" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+  <main class="max-w-4xl mx-auto py-10 text-center">
+    <div class="space-y-6">
+      <a href="events.html" class="block bg-green-600 text-white px-6 py-4 rounded text-xl hover:bg-green-700">🎟 View Upcoming Events</a>
+      <a href="places.html" class="block bg-blue-600 text-white px-6 py-4 rounded text-xl hover:bg-blue-700">🏝 Places to Visit</a>
+    </div>
   </main>
 
-  <script>
-    // Sample Event Data
-    const events = [
-      { title: "Afrobeat Concert", date: "2025-08-15", location: "Accra Stadium", image: "https://via.placeholder.com/400", description: "Live music and dance!" },
-      { title: "Chale Wote Festival", date: "2025-07-20", location: "James Town", image: "https://via.placeholder.com/400", description: "Street art & culture." },
-      { title: "Past Event: Food Fair", date: "2025-06-10", location: "Kumasi Park", image: "https://via.placeholder.com/400", description: "Local delicacies galore!" },
-      { title: "Past Event: Tech Expo", date: "2025-05-05", location: "Takoradi Hall", image: "https://via.placeholder.com/400", description: "Tech showcase & networking." }
-    ];
-
-    const eventsList = document.getElementById('eventsList');
-    const upcomingBtn = document.getElementById('upcomingBtn');
-    const archiveBtn = document.getElementById('archiveBtn');
-
-    // Get today's date
-    const today = new Date().toISOString().split('T')[0];
-
-    function renderEvents(filter) {
-      eventsList.innerHTML = '';
-      const filtered = events.filter(e => filter === 'upcoming' ? e.date >= today : e.date < today);
-      if (filtered.length === 0) {
-        eventsList.innerHTML = `<p class="text-center text-gray-500 col-span-3">No ${filter} events available.</p>`;
-        return;
-      }
-      filtered.forEach(event => {
-        const card = document.createElement('div');
-        card.className = "bg-white rounded shadow hover:shadow-lg transition";
-        card.innerHTML = `
-          <img src="${event.image}" class="w-full h-48 object-cover rounded-t">
-          <div class="p-4">
-            <h3 class="text-lg font-bold">${event.title}</h3>
-            <p class="text-sm text-gray-600">${event.date} • ${event.location}</p>
-            <p class="text-sm mt-2">${event.description}</p>
-          </div>`;
-        eventsList.appendChild(card);
-      });
-    }
-
-    // Default view: upcoming events
-    renderEvents('upcoming');
-
-    // Switch views
-    upcomingBtn.addEventListener('click', () => renderEvents('upcoming'));
-    archiveBtn.addEventListener('click', () => renderEvents('archive'));
-  </script>
+  <footer class="bg-gray-800 text-white text-center py-4">
+    &copy; 2025 Ghana Events. All rights reserved.
+  </footer>
 </body>
 </html>
